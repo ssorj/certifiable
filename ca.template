@@ -1,0 +1,9 @@
+organization = "Example"
+state = "Example"
+country = EX
+cn = "Example"
+serial = 1
+expiration_days = 365242
+ca
+cert_signing_key
+crl_signing_key

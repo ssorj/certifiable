@@ -1,0 +1,14 @@
+@command
+def generate(app):
+    check_program("certtool")
+
+    make_dir("build")
+
+    run("certtool --generate-privkey --bits 4096 --outfile build/service.key")
+    run("chmod 600 build/service.key")
+    run("certtool --generate-self-signed --load-privkey build/service.key --outfile build/service.cert --template service.template")
+    run("certtool --certificate-info --infile build/service.cert")
+
+@command
+def clean(app):
+    remove("build")
