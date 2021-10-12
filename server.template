@@ -1,7 +1,7 @@
 organization = "Example"
 state = "Example"
 country = EX
-cn = "Example"
+cn = "Server"
 serial = 1
 expiration_days = 365242
 dns_name = "example.net"

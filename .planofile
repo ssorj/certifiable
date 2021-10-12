@@ -4,10 +4,30 @@ def generate(app):
 
     make_dir("build")
 
-    run("certtool --generate-privkey --bits 4096 --outfile build/service.key")
-    run("chmod 600 build/service.key")
-    run("certtool --generate-self-signed --load-privkey build/service.key --outfile build/service.cert --template service.template")
-    run("certtool --certificate-info --infile build/service.cert")
+    run("certtool --generate-privkey --bits 4096 --outfile build/server-key.pem")
+    run("chmod 600 build/server-key.pem")
+    run("certtool --generate-self-signed --load-privkey build/server-key.pem --outfile build/server-cert.pem --template server.template")
+    run("certtool --certificate-info --infile build/server-cert.pem")
+
+    run("certtool --generate-privkey --bits 4096 --outfile build/client-key.pem")
+    run("chmod 600 build/client-key.pem")
+    run("certtool --generate-self-signed --load-privkey build/client-key.pem --outfile build/client-cert.pem --template client.template")
+    run("certtool --certificate-info --infile build/client-cert.pem")
+
+@command
+def verify(app):
+    check_program("openssl")
+    run("openssl verify -CAfile build/server-cert.pem build/server-cert.pem")
+
+@command
+def run_server(app):
+    check_program("openssl")
+    run("openssl s_server -cert build/server-cert.pem -key build/server-key.pem -CAfile build/client-cert.pem -verify 1")
+
+@command
+def run_client(app):
+    check_program("openssl")
+    run("openssl s_client -cert build/client-cert.pem -key build/client-key.pem -CAfile build/server-cert.pem")
 
 @command
 def clean(app):

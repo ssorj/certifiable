@@ -1,0 +1,10 @@
+organization = "Example"
+state = "Example"
+country = EX
+cn = "Client"
+serial = 1
+expiration_days = 365242
+dns_name = "example.net"
+tls_www_client
+signing_key
+encryption_key
