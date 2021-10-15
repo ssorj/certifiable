@@ -18,6 +18,7 @@ def generate(app):
 def verify(app):
     check_program("openssl")
     run("openssl verify -CAfile build/server-cert.pem build/server-cert.pem")
+    run("openssl verify -CAfile build/client-cert.pem build/client-cert.pem")
 
 @command
 def run_server(app):
