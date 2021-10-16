@@ -1,3 +1,4 @@
+# Certifiable
 
 - https://help.ubuntu.com/community/GnuTLS
 - https://ubuntu.com/server/docs/security-certificates
@@ -21,3 +22,5 @@ https://issues.apache.org/jira/browse/PROTON-2397
 https://serverfault.com/questions/747525/what-does-verify-return1-mean-in-the-openssl-output
 
 dnf install openssl gnutls-utils
+
+https://stackoverflow.com/questions/4024393/difference-between-self-signed-ca-and-self-signed-certificate
