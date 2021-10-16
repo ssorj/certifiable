@@ -1,5 +1,5 @@
 @command
-def generate(app):
+def build(app):
     check_program("certtool")
 
     make_dir("build")
@@ -13,6 +13,10 @@ def generate(app):
     run("chmod 600 build/client-key.pem")
     run("certtool --generate-self-signed --load-privkey build/client-key.pem --outfile build/client-cert.pem --template client.template")
     run("certtool --certificate-info --infile build/client-cert.pem")
+
+@command
+def clean(app):
+    remove("build")
 
 @command
 def verify(app):
@@ -31,5 +35,11 @@ def run_client(app):
     run("openssl s_client -cert build/client-cert.pem -key build/client-key.pem -CAfile build/server-cert.pem")
 
 @command
-def clean(app):
-    remove("build")
+def server_info(app):
+    check_program("openssl")
+    run("openssl x509 -in build/server-cert.pem -text")
+
+@command
+def client_info(app):
+    check_program("openssl")
+    run("openssl x509 -in build/client-cert.pem -text")
