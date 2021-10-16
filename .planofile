@@ -21,18 +21,18 @@ def clean(app):
 @command
 def verify(app):
     check_program("openssl")
-    run("openssl verify -CAfile build/server-cert.pem build/server-cert.pem")
-    run("openssl verify -CAfile build/client-cert.pem build/client-cert.pem")
+    run("openssl verify -trusted build/server-cert.pem build/server-cert.pem")
+    run("openssl verify -trusted build/client-cert.pem build/client-cert.pem")
 
 @command
 def run_server(app):
     check_program("openssl")
-    run("openssl s_server -cert build/server-cert.pem -key build/server-key.pem -CAfile build/client-cert.pem -verify 1")
+    run("openssl s_server -cert build/server-cert.pem -key build/server-key.pem -trusted build/client-cert.pem -verify 1")
 
 @command
 def run_client(app):
     check_program("openssl")
-    run("openssl s_client -cert build/client-cert.pem -key build/client-key.pem -CAfile build/server-cert.pem")
+    run("openssl s_client -cert build/client-cert.pem -key build/client-key.pem -trusted build/server-cert.pem")
 
 @command
 def server_info(app):

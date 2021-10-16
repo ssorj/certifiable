@@ -6,7 +6,10 @@ serial = 1
 expiration_days = 365242
 dns_name = "example.net"
 tls_www_client
-ca
 signing_key
-cert_signing_key # A workaround
 encryption_key
+# XXX Older OpenSSL versions require these
+# https://github.com/openssl/openssl/issues/1418
+ca
+cert_signing_key
+# End XXX
