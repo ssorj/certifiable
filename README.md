@@ -19,3 +19,5 @@ https://stackoverflow.com/questions/19726138/openssl-error-18-at-0-depth-lookups
 https://issues.apache.org/jira/browse/PROTON-2397
 
 https://serverfault.com/questions/747525/what-does-verify-return1-mean-in-the-openssl-output
+
+dnf install openssl gnutls-utils
