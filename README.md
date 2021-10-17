@@ -7,7 +7,7 @@
 - http://www.gerv.net/security/self-signed-certs/
 - https://en.wikipedia.org/wiki/Public_key_certificate
 
-A certificate contains a public key, plus other information
+- A certificate contains a public key, plus other information
 
 hypercorn main:star --certfile service.cert --keyfile service.key --debug
 
@@ -23,4 +23,6 @@ https://serverfault.com/questions/747525/what-does-verify-return1-mean-in-the-op
 
 dnf install openssl gnutls-utils
 
-https://stackoverflow.com/questions/4024393/difference-between-self-signed-ca-and-self-signed-certificate
+- https://stackoverflow.com/questions/4024393/difference-between-self-signed-ca-and-self-signed-certificate
+- A trust anchor does not have to be a CA certificate.  Any certificate can be be explicitly trusted.
+- https://www.openssl.org/docs/man3.0/man1/openssl-verification-options.html
