@@ -1,5 +1,7 @@
+from plano import *
+
 @command
-def build(app):
+def build():
     check_program("certtool")
 
     make_dir("build")
@@ -15,31 +17,37 @@ def build(app):
     run("certtool --certificate-info --infile build/client-cert.pem")
 
 @command
-def clean(app):
+def clean():
     remove("build")
+    remove(find("__pycache__"))
 
 @command
-def verify(app):
+def verify():
     check_program("openssl")
+
     run("openssl verify -trusted build/server-cert.pem build/server-cert.pem")
     run("openssl verify -trusted build/client-cert.pem build/client-cert.pem")
 
 @command
-def run_server(app):
+def run_server():
     check_program("openssl")
+
     run("openssl s_server -cert build/server-cert.pem -key build/server-key.pem -trusted build/client-cert.pem -verify 1")
 
 @command
-def run_client(app):
+def run_client():
     check_program("openssl")
+
     run("openssl s_client -cert build/client-cert.pem -key build/client-key.pem -trusted build/server-cert.pem")
 
 @command
-def server_info(app):
+def server_info():
     check_program("openssl")
+
     run("openssl x509 -in build/server-cert.pem -text")
 
 @command
-def client_info(app):
+def client_info():
     check_program("openssl")
+
     run("openssl x509 -in build/client-cert.pem -text")
