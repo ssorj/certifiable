@@ -32,3 +32,6 @@ To look at
 - https://github.com/FiloSottile/mkcert
 - https://news.ycombinator.com/item?id=33383095
 
+Todo
+
+- Use explicit host and port with the s_client and s_server commands, so they work better as examples.
